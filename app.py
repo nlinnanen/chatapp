@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 def index():
     result = db.session.execute(text("SELECT message FROM messages"))
     messages = result.fetchall()
-    return render_template("index.html", count=len(messages), messages=messages) 
+    return render_template("index.html") 
 
 @app.route("/new")
 def new():

@@ -1,7 +1,26 @@
-Viestien määrä: {{ count }}
-<hr>
-{% for message in messages %}
-{{ message.content }}
-<hr>
-{% endfor %}
-<a href="/new">Lähetä viesti</a>
+{% include 'base.html' %}
+
+{% block content %}
+<div class="flex h-screen w-screen justify-center bg-gray-800 text-gray-300">
+  <div hx-swap-oob="true" hx-target="#messages" class="w-4/5">
+    <div class="flex w-full m-4">
+      <div>
+        <div class="mr-4 aspect-square w-8 rounded-full bg-blue-600 text-center p-1">P</div>
+      </div>
+      <div>
+        <h3>GPT</h3>
+        <p>To list all tables in a PostgreSQL database, you can use the psql command-line tool and the SQL command \dt
+          or \dt+. This command provides information about all the tables in the current database. Here's how you can do
+          it:</p>
+      </div>
+    </div>
+  </div>
+  <form hx-post="/messages" class="center fixed bottom-0 m-4 flex w-4/5 flex-col items-center">
+    <div class="w-full rounded-xl border-2 border-gray-700 bg-gray-800 p-3">
+      <input name="message" placeholder="Message" required class="w-11/12 bg-transparent" />
+      <button class="">Send</button>
+    </div>
+    <p class="w-full text-center text-gray-500">ProdekoGPT can't make mistakes.</p>
+  </form>
+</div>
+{% endblock %}
