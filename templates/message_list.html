@@ -1,0 +1,9 @@
+<div id="message-list" class="w-4/5">
+  {% if messages|length == 0 %}
+  <p class="text-center text-gray-500">No messages yet.</p>
+  {% else %}
+    {% for message in messages %}
+      {% include 'message.html' %}
+    {% endfor %}
+  {% endif %}
+</div>

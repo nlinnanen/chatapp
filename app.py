@@ -10,18 +10,19 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
-    result = db.session.execute(text("SELECT message FROM messages"))
+    result = db.session.execute(text("SELECT message, username FROM messages INNER JOIN users ON messages.sender_id = users.id ORDER BY messages.created_at"))
     messages = result.fetchall()
-    return render_template("index.html") 
+    return render_template("index.html", messages=messages) 
 
 @app.route("/new")
 def new():
     return render_template("new.html")
 
-@app.route("/send", methods=["POST"])
-def send():
+@app.route("/messages", methods=["POST"])
+def create_message():
     message = request.form["message"]
-    sql = text("INSERT INTO messages (message, conversation_id) VALUES (:message, '679219f4-df70-463e-b686-6d1652861447')")
-    db.session.execute(sql, {"message":message})
+    user = db.session.execute(text("SELECT id, username FROM users WHERE username = :username"), {"username":"user"}).fetchone()
+    sql = text("INSERT INTO messages (message, sender_id) VALUES (:message, :sender_id) RETURNING *")
+    created_message = db.session.execute(sql, {"message":message, "sender_id":user.id}).fetchone()
     db.session.commit()
-    return redirect("/")
+    return render_template("message.html", message={"message": created_message.message, "username":user.username})
