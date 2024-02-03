@@ -11,6 +11,7 @@ postgres-data/
 
 # Node
 node_modules/
+output.css
 
 # Distribution / packaging
 .Python
