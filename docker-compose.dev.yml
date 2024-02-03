@@ -10,17 +10,17 @@ services:
     volumes:
       - ./postgres-data/postgres:/var/lib/postgresql/data
       - ./db-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-  node:
+  tailwind:
     restart: always
     build: 
       context: .
       dockerfile: ./dev.Node.Dockerfile
-    container_name: node
+    container_name: tailwind
     environment:
       - NODE_ENV=development
     tty: true
     volumes:
-      - .:/app:consistent
+      - ./flaskr/templates:/app/flaskr/templates:consistent
   app:
     restart: always
     build:
@@ -32,7 +32,7 @@ services:
       - 5001:5000
     environment:
       - FLASK_ENV=development
-      - FLASK_APP=app.py
+      - FLASK_APP=flaskr
       - FLASK_DEBUG=1
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
     depends_on:

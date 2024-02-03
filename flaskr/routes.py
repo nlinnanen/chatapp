@@ -1,15 +1,11 @@
-from flask import Flask
-from flask import redirect, render_template, request
-from flask_sqlalchemy import SQLAlchemy
+from flaskr import app
+from .db import db
+from flask import render_template, request
 from sqlalchemy.sql import text
-import os
-
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL") 
-db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
+    print(type(db))
     result = db.session.execute(text("SELECT message, username FROM messages INNER JOIN users ON messages.sender_id = users.id ORDER BY messages.created_at"))
     messages = result.fetchall()
     return render_template("index.html", messages=messages) 
@@ -26,3 +22,4 @@ def create_message():
     created_message = db.session.execute(sql, {"message":message, "sender_id":user.id}).fetchone()
     db.session.commit()
     return render_template("message.html", message={"message": created_message.message, "username":user.username})
+    
