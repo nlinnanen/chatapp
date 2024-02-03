@@ -1,0 +1,24 @@
+{
+  "name": "tsoha",
+  "version": "1.0.0",
+  "description": "Keskustelusovellus on web-sovellus, jossa käyttäjät voivat keskustella eri aiheista.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./static/styles.css -o ./static/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlinnanen/tsoha.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nlinnanen/tsoha/issues"
+  },
+  "homepage": "https://github.com/nlinnanen/tsoha#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1"
+  }
+}
