@@ -8,20 +8,22 @@ Backend on toteutettu Pythonilla Flask-kirjastolla. Tietokantana käytetään Po
 
 ## Sovelluksen ominaisuuksia
 
-- Käyttäjä voi luoda tunnuksen
-- Käyttäjä voi kirjautua sisään
+- Käyttäjä voi luoda tunnuksen (ei vielä implementoitu)
+- Käyttäjä voi kirjautua sisään (salasanat ei vielä implementoitu)
 - Käyttäjä voi kirjoittaa viestejä
 - Käyttäjä voi poistaa viestejä
-- Käyttäjä voi muokata viestejä
+- Käyttäjä voi muokata viestejä (ei vielä implementoitu)
 - Käyttäjä voi kirjautua ulos
-- Käyttäjä voi poistaa tunnuksen
+- Käyttäjä voi poistaa tunnuksen (ei vielä implementoitu)
 - Käyttäjä voi luoda keskustelun
 - Käyttäjä voi poistaa keskustelun
-- Käyttäjä voi luoda keskustelukategorian
-- Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana
+- Käyttäjä voi luoda keskustelukategorian (ei vielä implementoitu)
+- Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana (ei vielä implementoitu)
 
 ## Käynnistys
 
 Projekti käyttää Pythonin Flask-kirjastoa docker kontissa. Jos et ole ladannut dockeria koneellesi, tee se [näiden](https://docs.docker.com/engine/install/) ohjeiden mukaan. Sovelluksen käynnistys onnistuu komennolla `docker compose up`. Sovellus käynnistyy osoitteeseen http://localhost:5001.
 
-Kehitystyössä käytetään devcontaineria. Tämä vaatii Visual Studio Coden ja [Dev Container](https://code.visualstudio.com/docs/remote/containers) laajennuksen. Kun olet ladannut nämä, voit avata projektin Visual Studio Codessa ja valita `Reopen in Container` -komennon. Kontin sisällä voit käynnistää sovelluksen komennolla `flask run --host=0.0.0.0`, jolloin sovellus käynnistyy osoitteeseen http://localhost:5000.
+## Docker
+
+Sovellus käyttää kolmea docker konttia: flask, postgres ja tailwind. Flask-kontti pyörittää applikaatiota, postgres-kontti tietokantaa ja tailwind-kontti luo parsii frontendin tyylit. Tailwind tarvitsee node.js:n, minkä takia se on oma konttinsa.
