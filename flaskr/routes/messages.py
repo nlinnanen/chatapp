@@ -22,4 +22,5 @@ def update_message(id):
 @app.route("/messages/<id>", methods=["DELETE"])
 def delete_message(id):
     messages.delete_message(id)
-    return render_template("info.html", info="Successfully deleted message")
+    return ""
+    # return render_template("info.html", info="Successfully deleted message")

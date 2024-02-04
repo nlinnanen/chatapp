@@ -1,10 +1,13 @@
-<div id="message-{{ message.id }}" class="flex w-full m-4">
+<div id="message-{{ message.id }}" class="flex w-full m-4 group">
   <div>
-    <div class="mr-4 aspect-square w-8 rounded-full bg-blue-600 text-center p-1">{{ message.username|first }}
+    <div class="mr-4 aspect-square w-8 rounded-full bg-blue-600 text-center p-1">
+      {{ message.username|first }}
     </div>
   </div>
-  <div>
+  <div class="grow">
     <h3>{{ message.username }}</h3>
     <p>{{ message.message}}</p>
   </div>
+  <button hx-delete="/messages/{{ message.id }}" hx-target="#message-{{ message.id }}" hx-swap="delete"
+    class="invisible group-hover:visible px-4 py-2 bg-gray-700 h-14 rounded-lg">Delete</button>
 </div>
