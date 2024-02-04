@@ -1,7 +1,7 @@
 from flaskr import app
 from ..db.users import create_user, get_user, update_user
 from ..db.messages import get_messages
-from flask import render_template, request
+from flask import render_template, request, redirect
 
 @app.route("/users", methods=["POST"])
 def create_user():
@@ -11,7 +11,7 @@ def create_user():
 
     messages = get_messages()
 
-    return render_template("index.html", user=messages)
+    return redirect("/")
 
 @app.route("/users/<id>", methods=["GET"])
 def get_user(id):

@@ -1,13 +1,15 @@
 from flaskr import app
 from ..db.messages import create_message, update_message, delete_message
-from flask import render_template, request
+from flask import render_template, request, session
 
-@app.route("/messages", methods=["POST"])
-def create_message():
+from flaskr.db import messages
+
+@app.route("/conversations/<id>/messages", methods=["POST"])
+def create_message(id):
+    conversation_id = id
     message = request.form["message"]
-    conversation_id = request.form["conversation_id"]
-    sender_id = request.form["sender_id"]
-    created_message = create_message(message, conversation_id, sender_id)
+    sender_id = session["user_id"]
+    created_message = messages.create_message(message, conversation_id, sender_id)
     return render_template("message.html", message=created_message)
 
 

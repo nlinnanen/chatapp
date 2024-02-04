@@ -1,9 +1,9 @@
 from . import db
 from sqlalchemy.sql import text
 
-def create_conversation(name):
-    sql = text("INSERT INTO conversations (name) VALUES (:name) RETURNING *")
-    result = db.session.execute(sql, {"name":name})
+def create_conversation():
+    sql = text("INSERT INTO conversations DEFAULT VALUES RETURNING *")
+    result = db.session.execute(sql)
     db.session.commit()
     return result.fetchone()
 
@@ -13,12 +13,6 @@ def get_conversations():
 
 def get_conversation(id):
     result = db.session.execute(text("SELECT * FROM conversations WHERE id = :id"), {"id":id})
-    return result.fetchone()
-
-def update_conversation(id, name):
-    sql = text("UPDATE conversations SET name = :name WHERE id = :id RETURNING *")
-    result = db.session.execute(sql, {"name":name, "id":id})
-    db.session.commit()
     return result.fetchone()
 
 def delete_conversation(id):  

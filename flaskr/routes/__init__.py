@@ -1,10 +1,10 @@
 from flaskr import app
-from ..db import db
-from flask import render_template, session, redirect
-from sqlalchemy.sql import text
+from flaskr.db.conversations import get_conversations
+from flask import render_template
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    conversations = get_conversations()
+    return render_template("index.jinja2", conversations=conversations)
 
 from . import login, categories, messages, users, conversations 

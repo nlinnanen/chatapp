@@ -1,0 +1,21 @@
+{% include "base.html" %}
+
+{% block content %}
+<div class="w-screen flex flex-col space-y-5">
+  {% for conversations in conversations %}
+  <div class="flex flex-row space-x-5">
+    <a href="/conversations/{{ conversations.id }}" class="text-xl">
+      {{ conversations.created_at.strftime("%Y-%m-%d %H:%M")}}
+    </a>
+    <button hx-delete="/conversations/{{ conversations.id }}" hx-swap="delete" hx-target="closest div"
+      class="bg-red-400 px-4 py-2 rounded-md">
+      Delete
+    </button>
+  </div>
+  {% endfor %}
+  <div class="fixed bottom-0 w-screen flex items-center justify-center">
+    <button hx-post="/conversations" hx-target="body" hx-swap="outerHTML"
+      class="w-4/5 py-2 px-4 bg-blue-600 rounded-lg m-4">Create conversation</button>
+  </div>
+</div>
+{% endblock content %}

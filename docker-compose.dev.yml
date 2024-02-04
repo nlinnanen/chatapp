@@ -35,6 +35,7 @@ services:
       - FLASK_APP=flaskr
       - FLASK_DEBUG=1
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
+      - SECRET_KEY=dd0d23fa101dae9d353abe3d9725b9ac
     depends_on:
       - postgres
     volumes:

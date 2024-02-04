@@ -1,9 +1,9 @@
 {% include 'base.html' %}
 
 {% block content %}
-<div class="flex h-screen w-screen justify-center bg-gray-800 text-gray-300">
+<div class="flex h-screen w-screen justify-center">
   {% include 'message_list.html' %}
-  <form hx-post="/messages" hx-target="#message-list" hx-swap="beforeend" class="center fixed bottom-0 m-4 flex w-4/5 flex-col items-center">
+  <form hx-post="/conversations/{{ conversation.id }}/messages" hx-target="#message-list" hx-swap="beforeend" class="center fixed bottom-0 m-4 flex w-4/5 flex-col items-center">
     <div class="w-full rounded-xl border-2 border-gray-700 bg-gray-800 p-3">
       <input name="message" placeholder="Message" required class="w-11/12 bg-transparent" />
       <button class="">Send</button>
