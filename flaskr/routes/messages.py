@@ -16,10 +16,10 @@ def create_message(id):
 @app.route("/messages/<id>", methods=["PUT"])
 def update_message(id):
     message = request.form["message"]
-    updated_message = update_message(id, message)
+    updated_message = messages.update_message(id, message)
     return render_template("message.html", message=updated_message)
 
 @app.route("/messages/<id>", methods=["DELETE"])
 def delete_message(id):
-    deleted_message = delete_message(id)
+    messages.delete_message(id)
     return render_template("info.html", info="Successfully deleted message")
