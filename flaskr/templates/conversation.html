@@ -1,6 +1,7 @@
 {% include 'base.html' %}
 
 {% block content %}
+<a href="/" class="fixed bg-gray-700 py-2 px-4 rounded-lg right-0 m-4 mt-16">Back</a>
 <div class="flex h-screen w-screen justify-center">
   {% include 'message_list.html' %}
   <form hx-post="/conversations/{{ conversation.id }}/messages" hx-target="#message-list" hx-swap="beforeend" class="center fixed bottom-0 m-4 flex w-4/5 flex-col items-center">
