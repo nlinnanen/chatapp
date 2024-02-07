@@ -3,6 +3,7 @@ services:
   postgres:
     restart: always
     image: postgres:10
+    command: ["postgres", "-c", "log_statement=all"]
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -10,18 +11,32 @@ services:
     volumes:
       - ./postgres-data/postgres:/var/lib/postgresql/data
       - ./db-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+  tailwind:
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./dev.Node.Dockerfile
+    container_name: tailwind
+    environment:
+      - NODE_ENV=development
+    tty: true
+    volumes:
+      - ./flaskr/templates:/app/flaskr/templates:consistent
   app:
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: ./dev.Dockerfile 
     container_name: flask_app
     command: flask run --host=0.0.0.0
     ports:
       - 5001:5000
     environment:
       - FLASK_ENV=development
-      - FLASK_APP=app.py
+      - FLASK_APP=flaskr
       - FLASK_DEBUG=1
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
+      - SECRET_KEY=dd0d23fa101dae9d353abe3d9725b9ac
     depends_on:
       - postgres
     volumes:
