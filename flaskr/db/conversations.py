@@ -2,12 +2,15 @@ from . import db
 from sqlalchemy.sql import text
 
 
-def create_conversation():
+def create_conversation(categories: list):
     sql = text("INSERT INTO conversations DEFAULT VALUES RETURNING *")
     result = db.session.execute(sql)
+    conversation = result.fetchone()
+    for category_id in categories:
+        sql = text("INSERT INTO categories_conversation (conversation_id, category_id) VALUES (:conversation_id, :category_id)")
+        db.session.execute(sql, {"conversation_id": conversation[0], "category_id": category_id})
     db.session.commit()
-    return result.fetchone()
-
+    return conversation
 
 def get_conversations():
     result = db.session.execute(text("SELECT * FROM conversations"))

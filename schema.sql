@@ -12,15 +12,15 @@ CREATE TABLE IF NOT EXISTS conversations (
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS category (
+CREATE TABLE IF NOT EXISTS categories (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL UNIQUE,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS category_conversation (
-    category_id UUID NOT NULL REFERENCES category(id),
-    conversation_id UUID NOT NULL REFERENCES conversations(id),
+CREATE TABLE IF NOT EXISTS categories_conversation (
+    category_id UUID NOT NULL REFERENCES categories(id),
+    conversation_id UUID NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
     PRIMARY KEY (category_id, conversation_id)
 );
 
@@ -33,5 +33,5 @@ CREATE TABLE IF NOT EXISTS messages (
 );
 
 
-INSERT INTO users (username, password) VALUES ('admin', 'admin');
-INSERT INTO users (username, password) VALUES ('user', 'user');
+INSERT INTO categories (name) VALUES ('General');
+INSERT INTO categories (name) VALUES ('Random');

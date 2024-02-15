@@ -14,8 +14,15 @@
     </button>
   </div>
   {% endfor %}
-  <div class="fixed bottom-0 w-screen flex items-center justify-center">
-    <form class="w-4/5" action="/conversations" method="post">
+  <div class="fixed bottom-0 w-10/12">
+    <form class="grid grid-cols-3 m-4 items-center" action="/conversations" method="post">
+    <div class="col-span-2 w-full">
+      <select data-placeholder="Select a category" class="js-example-basic-multiple w-full" name="categories" multiple="multiple">
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
       <button type="submit" class="w-full py-2 px-4 bg-blue-600 rounded-lg m-4">Create conversation</button>
     </form>
   </div>
