@@ -22,6 +22,7 @@ services:
     tty: true
     volumes:
       - ./flaskr/templates:/app/flaskr/templates:consistent
+      - ./flaskr/static:/app/flaskr/static:consistent
   app:
     restart: always
     build:

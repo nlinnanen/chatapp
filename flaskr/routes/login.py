@@ -10,7 +10,7 @@ def login():
         return redirect('/')
 
     if request.method == "GET":
-        return render_template("login.jinja2")
+        return render_template("login.html")
     
     username = request.form["username"]
     password = request.form["password"]

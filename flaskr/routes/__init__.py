@@ -5,6 +5,6 @@ from flask import render_template
 @app.route("/")
 def index():
     conversations = get_conversations()
-    return render_template("index.jinja2", conversations=conversations)
+    return render_template("index.html", conversations=conversations)
 
 from . import login, categories, messages, users, conversations 
