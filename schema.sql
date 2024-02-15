@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS category_conversation (
 
 CREATE TABLE IF NOT EXISTS messages (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    conversation_id UUID REFERENCES conversations(id),
+    conversation_id UUID REFERENCES conversations(id) ON DELETE CASCADE,
     message TEXT NOT NULL,
     sender_id UUID NOT NULL REFERENCES users(id),
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
