@@ -3,7 +3,16 @@ from sqlalchemy.sql import text
 
 
 def create_message(message, conversation_id, sender_id):
-    sql = text("INSERT INTO messages (message, conversation_id, sender_id) VALUES (:message, :conversation_id, :sender_id) RETURNING *")
+    sql = text('''
+               WITH inserted_message AS (
+                INSERT INTO messages (message, conversation_id, sender_id)
+                VALUES (:message, :conversation_id, :sender_id) 
+                RETURNING *
+               )
+
+                SELECT inserted_message.*, users.username
+                FROM inserted_message LEFT JOIN users ON inserted_message.sender_id = users.id
+            ''')
     result = db.session.execute(
         sql, {"message": message, "conversation_id": conversation_id, "sender_id": sender_id})
     db.session.commit()
