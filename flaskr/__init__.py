@@ -6,7 +6,7 @@ app.secret_key = getenv("SECRET_KEY")
 
 from . import routes
 
-WHITELISTED_PATHS = ['/login', '/static']
+WHITELISTED_PATHS = ['/login', '/register', '/static']
 
 @app.before_request
 def check_user_logged_in():
