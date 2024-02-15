@@ -38,7 +38,7 @@ def logout():
 
 @app.route("/register", methods=["GET"])
 def register():
-    return render_template("register.jinja2")
+    return render_template("register.html")
 
 @app.route("/register", methods=["POST"])
 def register_post():
