@@ -1,17 +1,23 @@
 from flaskr import app
 from flask import render_template, request
 
-from flaskr.db import categories
+from flaskr.db import categories, conversations
 
-@app.route("/api/categories", methods=["POST"])
+@app.route("/categories", methods=["POST"])
 def create_category():
     name = request.form["name"]
     created_category = categories.create_category(name)
     return render_template("category.html", category=created_category)
 
 
-@app.route("/api/categories/<id>", methods=["GET"])
+@app.route("/categories/<id>", methods=["GET"])
 def get_category(id):
-    category = categories.get_category(id)
-    return render_template("category.html", category=category)
+    if id == "all":
+        conversation_list = conversations.get_conversations()
+    else:
+        conversation_list = conversations.get_conversations_for_category(id)
+        
+    categories_list = categories.get_categories()
+    app.logger.info(categories_list)
+    return render_template("conversation_list.html", conversations=conversation_list, categories=categories_list, selected_category=id)
 

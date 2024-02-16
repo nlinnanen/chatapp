@@ -2,18 +2,7 @@
 
 {% block content %}
 <div class="w-screen flex flex-col space-y-5 items-center pt-20">
-  {% for conversations in conversations %}
-  <hr class="w-4/5 border-gray-400">
-  <div class="flex flex-row items-center space-x-5">
-    <a href="/conversations/{{ conversations.id }}" class="text-xl">
-      {{ conversations.created_at.strftime("%Y-%m-%d %H:%M")}}
-    </a>
-    <button hx-delete="/conversations/{{ conversations.id }}" hx-swap="delete" hx-target="closest div"
-      class="bg-gray-700 hover:bg-red-400 px-4 py-2 rounded-md">
-      Delete
-    </button>
-  </div>
-  {% endfor %}
+  {% include "conversation_list.html" %}
   <div class="fixed bottom-0 w-10/12">
     <form class="grid grid-cols-3 m-4 items-center" action="/conversations" method="post">
     <div class="col-span-2 w-full">

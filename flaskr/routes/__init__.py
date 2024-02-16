@@ -7,6 +7,6 @@ from flask import render_template
 def index():
     conversations = get_conversations()
     categories = get_categories()
-    return render_template("index.html", conversations=conversations, categories=categories)
+    return render_template("index.html", conversations=conversations, categories=categories, selected_category="all")
 
 from . import login, categories, messages, users, conversations 
