@@ -7,7 +7,7 @@ from flaskr.db import categories, conversations
 def create_category():
     name = request.form["name"]
     created_category = categories.create_category(name)
-    return render_template("category.html", category=created_category)
+    return render_template("category_button.html", category=created_category, selected_category=None)
 
 
 @app.route("/categories/<id>", methods=["GET"])
