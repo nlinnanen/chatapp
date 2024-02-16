@@ -8,17 +8,15 @@ Backend on toteutettu Pythonilla Flask-kirjastolla. Tietokantana käytetään Po
 
 ## Sovelluksen ominaisuuksia
 
-- Käyttäjä voi luoda tunnuksen (ei vielä implementoitu)
-- Käyttäjä voi kirjautua sisään (salasanat ei vielä implementoitu)
+- Käyttäjä voi luoda tunnuksen
+- Käyttäjä voi kirjautua sisään 
 - Käyttäjä voi kirjoittaa viestejä
 - Käyttäjä voi poistaa viestejä
-- Käyttäjä voi muokata viestejä (ei vielä implementoitu)
 - Käyttäjä voi kirjautua ulos
-- Käyttäjä voi poistaa tunnuksen (ei vielä implementoitu)
 - Käyttäjä voi luoda keskustelun
 - Käyttäjä voi poistaa keskustelun
-- Käyttäjä voi luoda keskustelukategorian (ei vielä implementoitu)
-- Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana (ei vielä implementoitu)
+- Käyttäjä voi luoda keskustelukategorian
+- Käyttäjä voi filteröidä keskusteluita kategorian mukaan
 
 ## Käynnistys
 
