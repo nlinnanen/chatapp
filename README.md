@@ -9,7 +9,7 @@ Backend on toteutettu Pythonilla Flask-kirjastolla. Tietokantana käytetään Po
 ## Sovelluksen ominaisuuksia
 
 - Käyttäjä voi luoda tunnuksen
-- Käyttäjä voi kirjautua sisään 
+- Käyttäjä voi kirjautua sisään
 - Käyttäjä voi kirjoittaa viestejä
 - Käyttäjä voi poistaa viestejä
 - Käyttäjä voi kirjautua ulos

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="w-screen h-screen flex justify-center items-center">
     <div class="bg-gray-600 p-6 m-6 rounded-lg">
-        <form class="flex flex-col space-y-4" action="/login" method="post">
+        <form class="flex flex-col space-y-4" hx-post="/login" hx-swap="none">
             <h1 class="text-lg">Login</h1>
             <div class="grid grid-cols-3 gap-2">
                 <label for="username">Username</label>

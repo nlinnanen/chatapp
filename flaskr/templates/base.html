@@ -12,7 +12,13 @@
   <script>
     $(document).ready(function () {
       $('.js-example-basic-multiple').select2();
+    
+      setInterval(() => {
+        $('#notification').fadeOut(1000);
+      }, 3000);
     });
+
+
   </script>
 </head>
 
@@ -21,6 +27,7 @@
   <a href="/logout" class="fixed bg-gray-700 py-2 px-4 rounded-lg right-0 m-4">Logout</a>
   {% endif %}
   {% block content %}{% endblock %}
+  {% include 'notification.html' %}
 </body>
 
 </html>
